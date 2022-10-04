@@ -44,6 +44,7 @@ public class App {
                         add();
                         break;
                     case 2:
+                        listUnsoldCars();
                         edit();
                         break;
                     case 3:
@@ -99,22 +100,29 @@ public class App {
     }
 
     private void edit() {
-
-        System.out.println("Which car would you like to edit ?:");
-        int choice = input.nextInt();
-        input = new Scanner(System.in); // reset the scanner
-        if ((choice < unsoldCurrentIndex + 1) && choice > 0) {
-            Car c = unsoldCars[choice - 1];
-            System.out.println("Make: " + c.getMake());
-            c.setMake(getInput(c.getMake()));
-            System.out.println("Model: " + c.getModel());
-            c.setModel(getInput(c.getModel()));
-            System.out.println("Year: " + c.getYear());
-            c.setYear(getInput(c.getYear()));
-        } else {
-            System.out.println("Choice out of bounds");
+        while(true){
+            try{
+                System.out.println("Which car would you like to edit ?:");
+                int choice = input.nextInt();
+                input = new Scanner(System.in); // reset the scanner
+                if ((choice < unsoldCurrentIndex + 1) && choice > 0) {
+                    Car c = unsoldCars[choice - 1];
+                    System.out.println("Make: " + c.getMake());
+                    c.setMake(getInput(c.getMake()));
+                    System.out.println("Model: " + c.getModel());
+                    c.setModel(getInput(c.getModel()));
+                    System.out.println("Year: " + c.getYear());
+                    c.setYear(getInput(c.getYear()));
+                } else {
+                    System.out.println("Choice out of bounds");
+                }
+                System.out.println("");
+                break;
+            }catch(Exception e){
+                System.out.println("Problem editing, try again");
+            }
         }
-        System.out.println("");
+
     }
 
     private void listUnsoldCars() {
